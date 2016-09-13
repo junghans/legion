@@ -369,7 +369,7 @@ MAPPER_SRC	+= $(LG_RT_DIR)/legion/mappers/default_mapper.cc \
 		   $(LG_RT_DIR)/legion/mappers/debug_mapper.cc \
 		   $(LG_RT_DIR)/legion/mappers/wrapper_mapper.cc
 
-ifeq ($(strip $(ALT_MAPPERS)),1)legion/
+ifeq ($(strip $(ALT_MAPPERS)),1)
 MAPPER_SRC	+= $(LG_RT_DIR)/legion/mappers/alt_mappers.cc
 endif
 
