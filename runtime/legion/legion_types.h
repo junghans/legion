@@ -26,7 +26,7 @@
 #include <cstring>
 #include <stdint.h>
 
-#include "limits.h"
+#include <limits.h>
 
 #include <map>
 #include <set>
@@ -39,7 +39,7 @@
 
 // Make sure we have the appropriate defines in place for including realm
 #define REALM_USE_LEGION_LAYOUT_CONSTRAINTS
-#include "realm.h"
+#include "realm/realm.h"
 
 namespace BindingLib { class Utility; } // BindingLib namespace
 

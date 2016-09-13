@@ -15,13 +15,9 @@
 #------------------------------------------------------------------------------#
 
 # Install headers
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/legion
   DESTINATION include
-  FILES_MATCHING PATTERN "*.h"
-)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
-  DESTINATION include
-  FILES_MATCHING PATTERN "*.inl"
+  FILES_MATCHING PATTERN "*/*.h" PATTERN "*/*.inl"
 )
 
 # Lowlevel runtime
@@ -29,48 +25,48 @@ if(Legion_USE_SHARED_LOWLEVEL)
   list(APPEND LOW_RUNTIME_SRC shared_lowlevel.cc)
 else()
   list(APPEND LOW_RUNTIME_SRC
-    lowlevel_config.h
-    lowlevel_disk.cc
-    lowlevel_dma.h            lowlevel_dma.cc
-    lowlevel_dma.inl
-    lowlevel.h                lowlevel.cc
-    lowlevel_impl.h
-    realm/event_impl.h        realm/event_impl.cc
-    realm/event_impl.inl
-    realm/faults.h            realm/faults.cc
-    realm/faults.inl
-    realm/idx_impl.h          realm/idx_impl.cc
-    realm/inst_impl.h         realm/inst_impl.cc
-    realm/machine_impl.h      realm/machine_impl.cc
-    realm/mem_impl.h          realm/mem_impl.cc
-    realm/metadata.h          realm/metadata.cc
-    realm/module.h            realm/module.cc
-    realm/nodeset.h
-    realm/numa/numa_module.h  realm/numa/numa_module.cc
-    realm/numa/numasysif.h    realm/numa/numasysif.cc
-    realm/operation.h         realm/operation.cc
-    realm/operation.inl
-    realm/proc_impl.h         realm/proc_impl.cc
-    realm/procset/procset_module.h realm/procset/procset_module.cc
-    realm/rsrv_impl.h         realm/rsrv_impl.cc
-    realm/runtime_impl.h      realm/runtime_impl.cc
-    realm/sampling_impl.h     realm/sampling_impl.cc
-    realm/tasks.h             realm/tasks.cc
-    realm/threads.h           realm/threads.cc
-    realm/threads.inl
+    legion/lowlevel/lowlevel_config.h
+    legion/lowlevel/lowlevel_disk.cc
+    legion/lowlevel/lowlevel_dma.h   legion/lowlevel/lowlevel_dma.cc
+    legion/lowlevel/lowlevel_dma.inl
+    legion/lowlevel/lowlevel.h       legion/lowlevel/lowlevel.cc
+    legion/lowlevel/lowlevel_impl.h
+    legion/realm/event_impl.h        legion/realm/event_impl.cc
+    legion/realm/event_impl.inl
+    legion/realm/faults.h            legion/realm/faults.cc
+    legion/realm/faults.inl
+    legion/realm/idx_impl.h          legion/realm/idx_impl.cc
+    legion/realm/inst_impl.h         legion/realm/inst_impl.cc
+    legion/realm/machine_impl.h      legion/realm/machine_impl.cc
+    legion/realm/mem_impl.h          legion/realm/mem_impl.cc
+    legion/realm/metadata.h          legion/realm/metadata.cc
+    legion/realm/module.h            legion/realm/module.cc
+    legion/realm/nodeset.h
+    legion/realm/numa/numa_module.h  legion/realm/numa/numa_module.cc
+    legion/realm/numa/numasysif.h    legion/realm/numa/numasysif.cc
+    legion/realm/operation.h         legion/realm/operation.cc
+    legion/realm/operation.inl
+    legion/realm/proc_impl.h         legion/realm/proc_impl.cc
+    legion/realm/procset/procset_module.h legion/realm/procset/procset_module.cc
+    legion/realm/rsrv_impl.h         legion/realm/rsrv_impl.cc
+    legion/realm/runtime_impl.h      legion/realm/runtime_impl.cc
+    legion/realm/sampling_impl.h     legion/realm/sampling_impl.cc
+    legion/realm/tasks.h             legion/realm/tasks.cc
+    legion/realm/threads.h           legion/realm/threads.cc
+    legion/realm/threads.inl
   )
   if(Legion_USE_CUDA)
     list(APPEND LOW_RUNTIME_SRC
-      realm/cuda/cuda_module.h    realm/cuda/cuda_module.cc
-      realm/cuda/cudart_hijack.h  realm/cuda/cudart_hijack.cc
+      legion/realm/cuda/cuda_module.h    legion/realm/cuda/cuda_module.cc
+      legion/realm/cuda/cudart_hijack.h  legion/realm/cuda/cudart_hijack.cc
     )
   endif()
   if(Legion_USE_LLVM)
     list(APPEND LOW_RUNTIME_SRC
-      realm/llvmjit/llvmjit.h
-      realm/llvmjit/llvmjit.inl
-      realm/llvmjit/llvmjit_internal.h  realm/llvmjit/llvmjit_internal.cc
-      realm/llvmjit/llvmjit_module.h    realm/llvmjit/llvmjit_module.cc
+      legion/realm/llvmjit/llvmjit.h
+      legion/realm/llvmjit/llvmjit.inl
+      legion/realm/llvmjit/llvmjit_internal.h  legion/realm/llvmjit/llvmjit_internal.cc
+      legion/realm/llvmjit/llvmjit_module.h    legion/realm/llvmjit/llvmjit_module.cc
   )
   endif()
   if(Legion_USE_GASNet)
@@ -78,51 +74,51 @@ else()
   endif()
 endif()
 list(APPEND LOW_RUNTIME_SRC
-  accessor.h
-  arrays.h
-  atomics.h
-  common.h
-  realm/bytearray.h
-  realm/bytearray.inl
-  realm/circ_queue.h
-  realm/circ_queue.inl
-  realm/cmdline.h          realm/cmdline.cc
-  realm/cmdline.inl
-  realm/codedesc.h         realm/codedesc.cc
-  realm/codedesc.inl
-  realm/custom_serdez.h
-  realm/custom_serdez.inl
-  realm/dynamic_table.h
-  realm/dynamic_table.inl
-  realm/event.h
-  realm/id.h
-  realm/id.inl
-  realm/indexspace.h
-  realm/instance.h
-  realm/logging.h          realm/logging.cc
-  realm/logging.inl
-  realm/machine.h
-  realm/machine.inl
-  realm/memory.h
-  realm/pri_queue.h
-  realm/pri_queue.inl
-  realm/processor.h
-  realm/processor.inl
-  realm/profiling.h        realm/profiling.cc
-  realm/profiling.inl
-  realm/realm_config.h
-  realm/realm.h
-  realm/redop.h
-  realm/reservation.h
-  realm/runtime.h
-  realm/sampling.h
-  realm/sampling.inl
-  realm/serialize.h
-  realm/serialize.inl
-  realm/timers.h           realm/timers.cc
-  realm/timers.inl
-  realm/utils.h
-  utilities.h
+  legion/lowlevel/accessor.h
+  legion/lowlevel/arrays.h
+  legion/lowlevel/atomics.h
+  legion/lowlevel/common.h
+  legion/realm/bytearray.h
+  legion/realm/bytearray.inl
+  legion/realm/circ_queue.h
+  legion/realm/circ_queue.inl
+  legion/realm/cmdline.h          legion/realm/cmdline.cc
+  legion/realm/cmdline.inl
+  legion/realm/codedesc.h         legion/realm/codedesc.cc
+  legion/realm/codedesc.inl
+  legion/realm/custom_serdez.h
+  legion/realm/custom_serdez.inl
+  legion/realm/dynamic_table.h
+  legion/realm/dynamic_table.inl
+  legion/realm/event.h
+  legion/realm/id.h
+  legion/realm/id.inl
+  legion/realm/indexspace.h
+  legion/realm/instance.h
+  legion/realm/logging.h          legion/realm/logging.cc
+  legion/realm/logging.inl
+  legion/realm/machine.h
+  legion/realm/machine.inl
+  legion/realm/memory.h
+  legion/realm/pri_queue.h
+  legion/realm/pri_queue.inl
+  legion/realm/processor.h
+  legion/realm/processor.inl
+  legion/realm/profiling.h        legion/realm/profiling.cc
+  legion/realm/profiling.inl
+  legion/realm/realm_config.h
+  legion/realm/realm.h
+  legion/realm/redop.h
+  legion/realm/reservation.h
+  legion/realm/runtime.h
+  legion/realm/sampling.h
+  legion/realm/sampling.inl
+  legion/realm/serialize.h
+  legion/realm/serialize.inl
+  legion/realm/timers.h           legion/realm/timers.cc
+  legion/realm/timers.inl
+  legion/realm/utils.h
+  legion/lowlevel/utilities.h
 )
 find_package(Threads REQUIRED)
 add_library(LowLevelRuntime ${LOW_RUNTIME_SRC})
@@ -167,13 +163,9 @@ endif()
 
 target_include_directories(LowLevelRuntime
   INTERFACE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/legion>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/realm>
-    $<INSTALL_INTERFACE:include>
     $<INSTALL_INTERFACE:include/legion>
-    $<INSTALL_INTERFACE:include/realm>
-  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} legion realm
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} lowlevel realm
 )
 
 install(TARGETS LowLevelRuntime EXPORT LegionTargets
@@ -184,12 +176,12 @@ install(TARGETS LowLevelRuntime EXPORT LegionTargets
 
 # Mapper objects
 list(APPEND MAPPER_SRC
-  mappers/debug_mapper.h       mappers/debug_mapper.cc
-  mappers/default_mapper.h     mappers/default_mapper.cc
-  mappers/mapping_utilities.h  mappers/mapping_utilities.cc
-  mappers/replay_mapper.h      mappers/replay_mapper.cc
-  mappers/shim_mapper.h        mappers/shim_mapper.cc
-  mappers/test_mapper.h        mappers/test_mapper.cc
+  legion/mappers/debug_mapper.h       legion/mappers/debug_mapper.cc
+  legion/mappers/default_mapper.h     legion/mappers/default_mapper.cc
+  legion/mappers/mapping_utilities.h  legion/mappers/mapping_utilities.cc
+  legion/mappers/replay_mapper.h      legion/mappers/replay_mapper.cc
+  legion/mappers/shim_mapper.h        legion/mappers/shim_mapper.cc
+  legion/mappers/test_mapper.h        legion/mappers/test_mapper.cc
 )
 
 # High level runtime
@@ -237,12 +229,8 @@ target_compile_definitions(HighLevelRuntime
 target_include_directories(HighLevelRuntime
   INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/legion>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/realm>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/mappers>
     $<INSTALL_INTERFACE:include/legion>
-    $<INSTALL_INTERFACE:include/realm>
-    $<INSTALL_INTERFACE:include/mappers>
-  PRIVATE legion realm mappers
+  PRIVATE lowlevel realm mappers
 )
 
 install(TARGETS HighLevelRuntime EXPORT LegionTargets

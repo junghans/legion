@@ -27,10 +27,10 @@
 #include "legion_views.h"
 #include "mapper_manager.h"
 #include "garbage_collection.h"
-#include "default_mapper.h"
-#include "test_mapper.h"
-#include "replay_mapper.h"
-#include "debug_mapper.h"
+#include "mappers/default_mapper.h"
+#include "mappers/test_mapper.h"
+#include "mappers/replay_mapper.h"
+#include "mappers/debug_mapper.h"
 #include <unistd.h> // sleep for warnings
 
 namespace LegionRuntime {

@@ -17,7 +17,7 @@
 #define __CIRCUIT_MAPPER_H__
 
 #include "legion.h"
-#include "shim_mapper.h"
+#include "mappers/shim_mapper.h"
 #include "circuit.h"
 
 using namespace LegionRuntime::HighLevel;

@@ -29,7 +29,7 @@
 // ******************** IMPORTANT **************************
 
 #include "legion_config.h"
-#include "lowlevel_config.h"
+#include "lowlevel/lowlevel_config.h"
 
 #include <stdbool.h>
 #include <stddef.h>

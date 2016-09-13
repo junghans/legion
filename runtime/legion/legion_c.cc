@@ -16,7 +16,7 @@
 #include "legion.h"
 #include "legion_c.h"
 #include "legion_c_util.h"
-#include "utilities.h"
+#include "lowlevel/utilities.h"
 #ifdef REALM_USE_LLVM
 #include "realm/llvmjit/llvmjit.h"
 #endif

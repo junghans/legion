@@ -109,7 +109,7 @@ ifneq (${MARCH},)
   CC_FLAGS += -march=${MARCH}
 endif
 
-INC_FLAGS	+= -I$(LG_RT_DIR) -I$(LG_RT_DIR)/realm -I$(LG_RT_DIR)/legion -I$(LG_RT_DIR)/mappers
+INC_FLAGS	+= -I$(LG_RT_DIR)/legion/lowlevel -I$(LG_RT_DIR)/legion/realm -I$(LG_RT_DIR)/legion -I$(LG_RT_DIR)/legion/mappers
 ifneq ($(shell uname -s),Darwin)
 LEGION_LD_FLAGS	+= -lrt -lpthread
 else
@@ -318,59 +318,59 @@ ASM_SRC		?=
 
 # Set the source files
 ifeq ($(strip $(SHARED_LOWLEVEL)),0)
-LOW_RUNTIME_SRC += $(LG_RT_DIR)/realm/runtime_impl.cc \
-	           $(LG_RT_DIR)/lowlevel_dma.cc \
-	           $(LG_RT_DIR)/realm/module.cc \
-	           $(LG_RT_DIR)/realm/threads.cc \
-	           $(LG_RT_DIR)/realm/faults.cc \
-		   $(LG_RT_DIR)/realm/operation.cc \
-	           $(LG_RT_DIR)/realm/tasks.cc \
-	           $(LG_RT_DIR)/realm/metadata.cc \
-		   $(LG_RT_DIR)/realm/event_impl.cc \
-		   $(LG_RT_DIR)/realm/rsrv_impl.cc \
-		   $(LG_RT_DIR)/realm/proc_impl.cc \
-		   $(LG_RT_DIR)/realm/mem_impl.cc \
-		   $(LG_RT_DIR)/realm/inst_impl.cc \
-		   $(LG_RT_DIR)/realm/idx_impl.cc \
-		   $(LG_RT_DIR)/realm/machine_impl.cc \
-		   $(LG_RT_DIR)/realm/sampling_impl.cc \
-                   $(LG_RT_DIR)/lowlevel.cc \
-                   $(LG_RT_DIR)/lowlevel_disk.cc
-LOW_RUNTIME_SRC += $(LG_RT_DIR)/realm/numa/numa_module.cc \
-		   $(LG_RT_DIR)/realm/numa/numasysif.cc
-LOW_RUNTIME_SRC += $(LG_RT_DIR)/realm/procset/procset_module.cc
+LOW_RUNTIME_SRC += $(LG_RT_DIR)/legion/realm/runtime_impl.cc \
+	           $(LG_RT_DIR)/legion/lowlevel/lowlevel_dma.cc \
+	           $(LG_RT_DIR)/legion/realm/module.cc \
+	           $(LG_RT_DIR)/legion/realm/threads.cc \
+	           $(LG_RT_DIR)/legion/realm/faults.cc \
+		   $(LG_RT_DIR)/legion/realm/operation.cc \
+	           $(LG_RT_DIR)/legion/realm/tasks.cc \
+	           $(LG_RT_DIR)/legion/realm/metadata.cc \
+		   $(LG_RT_DIR)/legion/realm/event_impl.cc \
+		   $(LG_RT_DIR)/legion/realm/rsrv_impl.cc \
+		   $(LG_RT_DIR)/legion/realm/proc_impl.cc \
+		   $(LG_RT_DIR)/legion/realm/mem_impl.cc \
+		   $(LG_RT_DIR)/legion/realm/inst_impl.cc \
+		   $(LG_RT_DIR)/legion/realm/idx_impl.cc \
+		   $(LG_RT_DIR)/legion/realm/machine_impl.cc \
+		   $(LG_RT_DIR)/legion/realm/sampling_impl.cc \
+                   $(LG_RT_DIR)/legion/lowlevel/lowlevel.cc \
+                   $(LG_RT_DIR)/legion/lowlevel/lowlevel_disk.cc
+LOW_RUNTIME_SRC += $(LG_RT_DIR)/legion/realm/numa/numa_module.cc \
+		   $(LG_RT_DIR)/legion/realm/numa/numasysif.cc
+LOW_RUNTIME_SRC += $(LG_RT_DIR)/legion/realm/procset/procset_module.cc
 ifeq ($(strip $(USE_CUDA)),1)
-LOW_RUNTIME_SRC += $(LG_RT_DIR)/realm/cuda/cuda_module.cc \
-		   $(LG_RT_DIR)/realm/cuda/cudart_hijack.cc
+LOW_RUNTIME_SRC += $(LG_RT_DIR)/legion/realm/cuda/cuda_module.cc \
+		   $(LG_RT_DIR)/legion/realm/cuda/cudart_hijack.cc
 endif
 ifeq ($(strip $(USE_LLVM)),1)
-LOW_RUNTIME_SRC += $(LG_RT_DIR)/realm/llvmjit/llvmjit_module.cc \
-                   $(LG_RT_DIR)/realm/llvmjit/llvmjit_internal.cc
+LOW_RUNTIME_SRC += $(LG_RT_DIR)/legion/realm/llvmjit/llvmjit_module.cc \
+                   $(LG_RT_DIR)/legion/realm/llvmjit/llvmjit_internal.cc
 endif
 ifeq ($(strip $(USE_GASNET)),1)
-LOW_RUNTIME_SRC += $(LG_RT_DIR)/activemsg.cc
+LOW_RUNTIME_SRC += $(LG_RT_DIR)/legion/lowlevel/activemsg.cc
 endif
 GPU_RUNTIME_SRC +=
 else
 CC_FLAGS	+= -DSHARED_LOWLEVEL
-LOW_RUNTIME_SRC	+= $(LG_RT_DIR)/shared_lowlevel.cc 
+LOW_RUNTIME_SRC	+= $(LG_RT_DIR)/legion/lowlevel/shared_lowlevel.cc 
 endif
-LOW_RUNTIME_SRC += $(LG_RT_DIR)/realm/logging.cc \
-	           $(LG_RT_DIR)/realm/cmdline.cc \
-		   $(LG_RT_DIR)/realm/profiling.cc \
-	           $(LG_RT_DIR)/realm/codedesc.cc \
-		   $(LG_RT_DIR)/realm/timers.cc
+LOW_RUNTIME_SRC += $(LG_RT_DIR)/legion/realm/logging.cc \
+	           $(LG_RT_DIR)/legion/realm/cmdline.cc \
+		   $(LG_RT_DIR)/legion/realm/profiling.cc \
+	           $(LG_RT_DIR)/legion/realm/codedesc.cc \
+		   $(LG_RT_DIR)/legion/realm/timers.cc
 
-MAPPER_SRC	+= $(LG_RT_DIR)/mappers/default_mapper.cc \
-		   $(LG_RT_DIR)/mappers/mapping_utilities.cc \
-		   $(LG_RT_DIR)/mappers/shim_mapper.cc \
-		   $(LG_RT_DIR)/mappers/test_mapper.cc \
-		   $(LG_RT_DIR)/mappers/replay_mapper.cc \
-		   $(LG_RT_DIR)/mappers/debug_mapper.cc \
-		   $(LG_RT_DIR)/mappers/wrapper_mapper.cc
+MAPPER_SRC	+= $(LG_RT_DIR)/legion/mappers/default_mapper.cc \
+		   $(LG_RT_DIR)/legion/mappers/mapping_utilities.cc \
+		   $(LG_RT_DIR)/legion/mappers/shim_mapper.cc \
+		   $(LG_RT_DIR)/legion/mappers/test_mapper.cc \
+		   $(LG_RT_DIR)/legion/mappers/replay_mapper.cc \
+		   $(LG_RT_DIR)/legion/mappers/debug_mapper.cc \
+		   $(LG_RT_DIR)/legion/mappers/wrapper_mapper.cc
 
-ifeq ($(strip $(ALT_MAPPERS)),1)
-MAPPER_SRC	+= $(LG_RT_DIR)/mappers/alt_mappers.cc
+ifeq ($(strip $(ALT_MAPPERS)),1)legion/
+MAPPER_SRC	+= $(LG_RT_DIR)/legion/mappers/alt_mappers.cc
 endif
 
 HIGH_RUNTIME_SRC += $(LG_RT_DIR)/legion/legion.cc \

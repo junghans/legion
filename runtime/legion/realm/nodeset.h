@@ -13,24 +13,17 @@
  * limitations under the License.
  */
 
-#ifndef __REALM_SAXPY__
-#define __REALM_SAXPY__
+// dynamic node set implementation for Realm
 
-#include "common.h"
-#include "utilities.h"
-#include "accessor.h"
-#include "arrays.h"
-#include "realm/realm.h"
+#ifndef REALM_NODESET_H
+#define REALM_NODESET_H
 
-using namespace Realm;
-using namespace LegionRuntime::Arrays;
-using namespace LegionRuntime::Accessor;
+// currently just using the HLR's version
+#include "../legion_types.h"
+#include "../legion_utilities.h"
 
-struct SaxpyArgs {
-public:
-  RegionInstance x_inst, y_inst, z_inst;
-  float alpha;
-  Rect<1> bounds;
+namespace Realm {
+  typedef Legion::Internal::NodeSet NodeSet;
 };
 
-#endif
+#endif // ifndef REALM_NODESET_H

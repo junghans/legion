@@ -25,7 +25,7 @@
 #include "legion.h"
 #include "legion_c.h"
 #include "legion_mapping.h"
-#include "mapping_utilities.h"
+#include "mappers/mapping_utilities.h"
 
 #include <cstdlib>
 #include <cstring>

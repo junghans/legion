@@ -16,8 +16,8 @@
 #ifndef __LEGION_PROFILING_H__
 #define __LEGION_PROFILING_H__
 
-#include "realm.h"
-#include "utilities.h"
+#include "realm/realm.h"
+#include "lowlevel/utilities.h"
 #include "legion_types.h"
 #include "legion_utilities.h"
 #include "realm/profiling.h"

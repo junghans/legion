@@ -13,24 +13,23 @@
  * limitations under the License.
  */
 
-#ifndef __REALM_SAXPY__
-#define __REALM_SAXPY__
+// meta-header for Realm - includes all the individual pieces
 
-#include "common.h"
-#include "utilities.h"
-#include "accessor.h"
-#include "arrays.h"
-#include "realm/realm.h"
+#ifndef REALM_H
+#define REALM_H
 
-using namespace Realm;
-using namespace LegionRuntime::Arrays;
-using namespace LegionRuntime::Accessor;
+#include "realm_config.h"
 
-struct SaxpyArgs {
-public:
-  RegionInstance x_inst, y_inst, z_inst;
-  float alpha;
-  Rect<1> bounds;
-};
+#include "profiling.h"
+#include "redop.h"
+#include "event.h"
+#include "reservation.h"
+#include "processor.h"
+#include "memory.h"
+#include "instance.h"
+#include "machine.h"
+#include "runtime.h"
+#include "indexspace.h"
+#include "codedesc.h"
 
-#endif
+#endif // ifndef REALM_H
