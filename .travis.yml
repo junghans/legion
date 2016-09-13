@@ -3,29 +3,29 @@ sudo: required
 dist: trusty
 os:
   - linux
-  - osx
+#  - osx
 compiler:
   - gcc
-  - clang
+#  - clang
 env:
   global:
   - WARN_AS_ERROR=1
   - REALM_SYNTHETIC_CORE_MAP=""
   matrix:
   - CC_FLAGS="-std=c++98" DEBUG=0
-  - CC_FLAGS="-std=c++98 -DPRIVILEGE_CHECKS -DBOUNDS_CHECKS" DEBUG=1
-  - CC_FLAGS="-std=c++98 -DLEGION_SPY" DEBUG=1 TEST_SPY=1
-  - CC_FLAGS="-std=c++0x" DEBUG=0
+#  - CC_FLAGS="-std=c++98 -DPRIVILEGE_CHECKS -DBOUNDS_CHECKS" DEBUG=1
+#  - CC_FLAGS="-std=c++98 -DLEGION_SPY" DEBUG=1 TEST_SPY=1
+#  - CC_FLAGS="-std=c++0x" DEBUG=0
   # - CC_FLAGS="-std=c++98" DEBUG=1 USE_GASNET=1 USE_LLVM=1 DISABLE_INNER=1
 matrix:
   exclude:
     - os: osx
       compiler: gcc
 # blacklist some branches
-branches:
-  only:
-    - stable
-    - master
+#branches:
+#  only:
+#    - stable
+#    - master
 before_install:
   - export THREADS=2
   - |
